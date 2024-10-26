@@ -1,7 +1,18 @@
+import 'package:datting_app/views/AuthenticationScreen/auth_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'controller/auth_controller.dart';
+import 'controller/user_controller.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
 }
 
 class MyApp extends StatelessWidget {
@@ -9,15 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    Get.put(AuthController());
+    Get.put(UserController());
+    return ScreenUtilInit(
+      builder: (context, child) => GetMaterialApp(
+        home: AuthScreen(),
+      )
     );
+
   }
 }
-
