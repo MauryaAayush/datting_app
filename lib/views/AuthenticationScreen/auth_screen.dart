@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controller/auth_controller.dart';
-
 
 class AuthScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final mobileController = TextEditingController();
   final AuthController authController = Get.find<AuthController>();
 
   AuthScreen({super.key});
@@ -20,6 +20,15 @@ class AuthScreen extends StatelessWidget {
         child: Column(
           children: [
             TextField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: 'Name'),
+            ),
+            TextField(
+              controller: mobileController,
+              decoration: InputDecoration(labelText: 'Mobile Number'),
+              keyboardType: TextInputType.phone,
+            ),
+            TextField(
               controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
             ),
@@ -31,7 +40,12 @@ class AuthScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                authController.register(emailController.text, passwordController.text);
+                authController.register(
+                  nameController.text,
+                  emailController.text,
+                  mobileController.text,
+                  passwordController.text,
+                );
               },
               child: Text('Register'),
             ),

@@ -1,4 +1,5 @@
 import 'package:datting_app/views/AuthenticationScreen/auth_screen.dart';
+import 'package:datting_app/views/Testing/phone_login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,10 +9,13 @@ import 'controller/user_controller.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  runApp(const MyApp());
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+
+  runApp(const MyApp());
+
+
 
 }
 
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
     Get.put(UserController());
     return ScreenUtilInit(
       builder: (context, child) => GetMaterialApp(
-        home: AuthScreen(),
+        home: PhoneLoginScreen(),
       )
     );
 
