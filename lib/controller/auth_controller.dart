@@ -1,5 +1,7 @@
+import 'package:datting_app/views/HomeScreen/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../views/Testing/otp_screen.dart';
@@ -42,6 +44,7 @@ class AuthController extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       Get.snackbar('Success', 'Logged in');
+      Get.to(const HomeScreen());
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
