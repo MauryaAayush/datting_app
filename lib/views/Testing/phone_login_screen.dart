@@ -38,16 +38,23 @@ class PhoneLoginScreen extends StatelessWidget {
               onPressed: () async {
                 String phoneNumber = phoneController.text.trim();
 
-                // Check if the phone number starts with +91
-                if (!phoneNumber.startsWith('+91 ') || phoneNumber.length != 13) {
-                  showSnackBar(context, 'Please enter a valid phone number in the format +91 XXXXXXXXXX');
+                // Ensure the phone number starts with +91 and has exactly 13 characters
+                if (!phoneNumber.startsWith('+91') ||
+                    phoneNumber.length != 13) {
+                  showSnackBar(context,
+                      'Please enter a valid phone number in the format +91XXXXXXXXXX');
                   return; // Exit if the format is invalid
                 }
 
-                // Remove the country code before sending the OTP
-                String formattedNumber = phoneNumber.replaceFirst('+91 ', '');
-                await authController.sendOtp(formattedNumber);
-                showSnackBar(context, 'OTP sent successfully! Check your messages.');
+                // No additional formatting needed; Firebase expects the full E.164 format
+                await authController
+                    .sendOtp(phoneNumber); // Pass the phoneNumber directly
+                showSnackBar(
+                    context, 'OTP sent successfully! Check your messages.');
+
+                print('Formatted Phone Number: $phoneNumber');
+
+
               },
               child: Text('Send OTP'),
             ),
