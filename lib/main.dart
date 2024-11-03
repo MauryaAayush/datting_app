@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(AuthController());
-    Get.put(UserController());
+
+    // Get.put(UserController());
     return ScreenUtilInit(
         builder: (context, child) => GetMaterialApp(
               home: AuthScreen(),
