@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,8 +6,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home Page'),
+      ),
       body: Center(
-        child: Text('HomeScreen'),
+        child: Container(
+          height: 300,
+          width: 300,
+          color: Colors.red,
+          child: Image.asset(
+            'assets/onboarding_1.png',
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }
